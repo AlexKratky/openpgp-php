@@ -379,13 +379,13 @@ class OpenPGP_Message implements IteratorAggregate, ArrayAccess {
 
   // IteratorAggregate interface
 
-  function getIterator() {
+  function getIterator(): Traversable {
     return new ArrayIterator($this->packets);
   }
 
   // ArrayAccess interface
 
-  function offsetExists($offset) {
+  function offsetExists(mixed $offset): bool {
     return isset($this->packets[$offset]);
   }
 
@@ -393,11 +393,15 @@ class OpenPGP_Message implements IteratorAggregate, ArrayAccess {
     return $this->packets[$offset];
   }
 
-  function offsetSet($offset, $value) {
-    return is_null($offset) ? $this->packets[] = $value : $this->packets[$offset] = $value;
+  function offsetSet(mixed $offset, mixed $value): void {
+    if (is_null($offset)) {
+      $this->packets[] = $value;
+    } else {
+      $this->packets[$offset] = $value;
+    }
   }
 
-  function offsetUnset($offset) {
+  function offsetUnset(mixed $offset): void {
     unset($this->packets[$offset]);
   }
 }
@@ -1678,13 +1682,13 @@ class OpenPGP_CompressedDataPacket extends OpenPGP_Packet implements IteratorAgg
 
   // IteratorAggregate interface
 
-  function getIterator() {
+  function getIterator(): Traversable {
     return new ArrayIterator($this->data->packets);
   }
 
   // ArrayAccess interface
 
-  function offsetExists($offset) {
+  function offsetExists(mixed $offset): bool {
     return isset($this->data[$offset]);
   }
 
@@ -1692,11 +1696,15 @@ class OpenPGP_CompressedDataPacket extends OpenPGP_Packet implements IteratorAgg
     return $this->data[$offset];
   }
 
-  function offsetSet($offset, $value) {
-    return is_null($offset) ? $this->data[] = $value : $this->data[$offset] = $value;
+  function offsetSet(mixed $offset, mixed $value): void {
+    if (is_null($offset)) {
+      $this->data[] = $value;
+    } else {
+      $this->data[$offset] = $value;
+    }
   }
 
-  function offsetUnset($offset) {
+  function offsetUnset(mixed $offset): void {
     unset($this->data[$offset]);
   }
 
