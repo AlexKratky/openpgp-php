@@ -1692,7 +1692,7 @@ class OpenPGP_CompressedDataPacket extends OpenPGP_Packet implements IteratorAgg
     return isset($this->data[$offset]);
   }
 
-  function offsetGet($offset) {
+  function offsetGet($offset): mixed {
     return $this->data[$offset];
   }
 
