@@ -389,7 +389,7 @@ class OpenPGP_Message implements IteratorAggregate, ArrayAccess {
     return isset($this->packets[$offset]);
   }
 
-  function offsetGet($offset) {
+  function offsetGet($offset): mixed {
     return $this->packets[$offset];
   }
 
